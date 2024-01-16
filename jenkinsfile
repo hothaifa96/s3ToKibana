@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+    
+    stages {
+
+        
+        stage('Install dependencies') {
+            steps {
+                script {
+                    // Install Python dependencies from requirements.txt
+                    sh 'pip3 install -r requirements.txt'
+                }
+            }
+        }
+
+        stage('reading the excel file') {
+            steps {
+                script {
+                    // Run the first Python script
+                    sh 'python3 read_from_title.py'
+                }
+            }
+        }
+
+        stage('Run db_generator.py') {
+            when {
+                expression {
+                    currentBuild.resultIsBetterOrEqualTo('SUCCESS')
+                }
+            }
+            steps {
+                script {
+                    // Run the second Python script only if the previous stage succeeded
+                    sh 'python3 db_generator.py'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            sh 'rm -fr *.*'
+            sh 'rm -fr *'
+        }
+    }
+}

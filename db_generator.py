@@ -11,6 +11,7 @@ db_password = "Pa$$w0rd"
 # SQL file to execute
 sql_file_path = "./all.sql"
 
+
 def execute_sql_script(connection, cursor, sql_file_path):
     with open(sql_file_path, 'r') as sql_file:
         sql_script = sql_file.read()
@@ -18,6 +19,7 @@ def execute_sql_script(connection, cursor, sql_file_path):
     # Execute the SQL script
     cursor.execute(sql_script)
     connection.commit()
+
 
 try:
     # Connect to the PostgreSQL database
