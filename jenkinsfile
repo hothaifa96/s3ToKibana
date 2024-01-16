@@ -26,6 +26,7 @@ pipeline {
                 script {
                     // Run the first Python script
                     withCredentials([aws(credentialsId: "ecr-credentials'")]){
+                        sh 'aws s3 sync s3://your-bucket-name . --exclude "img/*" --exclude "*.zip"'
                         sh '. venv/bin/activate && python3 read_from_title.py'
 
                     }

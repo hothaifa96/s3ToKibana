@@ -7,10 +7,10 @@ import boto3
 import os
 
 # AWS CLI sync command
-sync_command = ["aws", "s3", "sync", "s3://itaybuck", ".", "--exclude", "img/*" , "--exclude", "*.zip" , "--exclude","ארתמטיקה כתה ד.xlsx"]
+# sync_command = ["aws", "s3", "sync", "s3://itaybuck", ".", "--exclude", "img/*" , "--exclude", "*.zip" , "--exclude","ארתמטיקה כתה ד.xlsx"]
 
-# Execute AWS CLI sync command
-subprocess.run(sync_command)
+# # Execute AWS CLI sync command
+# subprocess.run(sync_command)
 
 # List all files with extension .xlsx in the current directory
 files = [file for file in os.listdir('.') if file.endswith('.xlsx')]
